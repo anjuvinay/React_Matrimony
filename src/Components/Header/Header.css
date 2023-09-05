@@ -1,0 +1,28 @@
+.span {
+    text-decoration: none;
+    font-size: 16px;
+    white-space: normal;
+    text-overflow: ellipsis;
+    font-weight: bolder;
+    margin-right: 5px;
+  }
+  
+  .loginPage hr {
+   
+    margin: 0;
+    background-color: black;
+    height: 2px;
+  }
+  
+  .loginPage a{
+    text-decoration: none;
+  }
+ 
+  
+  @media only screen and (max-width: 700px) {
+    .placeSearch,
+    .productSearch,
+    .sellMenu {
+      display: none;
+    }
+  }
