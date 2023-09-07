@@ -8,29 +8,48 @@ function Login() {
   const [password,setPassword]=useState('')
   const navigate=useNavigate()
 
-  const handleLogin=(e)=>{
+  const handleLogin=async (e)=>{
     e.preventDefault()
 
-    const dataToSend = {
-      Email:email,
-      Password:password   
-    };
+  //   const dataToSend = {
+  //     Email:email,
+  //     Password:password   
+  //   };
     
-    axios.post('http://localhost:3001/login', dataToSend).then((response=>{
-      console.log(response.data.logged)
-      if(response.data.logged==true){
-        alert("Login Success")
-        navigate('/')
+  //   axios.post('http://localhost:3001/login', dataToSend).then((response=>{
+  //     console.log(response.data.logged)
+  //     if(response.data.logged==true){
+  //       navigate('/')
         
-      }else{
-        alert("Login Failed")
+  //     }else{
+  //       alert("Login Failed")
         
-      }
-    }))
-    .catch((error)=>{
-      alert(error.message)
-    })
+  //     }
+  //   }))
+  //   .catch((error)=>{
+  //     alert(error.message)
+  //   })
+  // }
+  try {
+    const response = await axios.post('http://localhost:3001/login', {
+      Email: email,
+      Password: password,
+    });
+
+    if (response.data.logged) {
+      console.log(response.data)
+     
+      localStorage.setItem('token', response.data.token);
+      navigate('/'); 
+    } else {
+      alert('Login Failed');
+    }
+  } catch (error) {
+    alert('An error occurred while logging in.');
+    console.error(error);
   }
+};
+
 
   return (
     <div>

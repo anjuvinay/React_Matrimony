@@ -5,26 +5,36 @@ import axios from 'axios';
 function Profiles() {
     const[product,setProduct]=useState([])
     useEffect(()=>{
-        axios.get('http://localhost:3001/pro').then((response)=>{
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        console.log('Token missing');
+        return;
+      }
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+        axios.get('http://localhost:3001/pro', {headers}).then((response)=>{
           setProduct(response.data.items)
          
         })
+        .catch((error) => {
+          console.error('An error occurred while fetching data:', error);
+        });
+   
        })
 
   return (
     <section>
-    <div class="container mt-5">
+    <div class="container mt-4">
     <div class="row">
     {
         product.map((obj)=>{
           return(
       <div class="col-md-3 p-3">
-        <div class="card" 
-        // style={{width: 15rem; height:25rem}}
-        >
-  <img 
-//   style={{width: 15rem; height: 13rem;}} 
-  src={`http://localhost:3001/profile-images/${obj._id}1.jpg`} class="card-img-top" alt="..."/>
+        <div class="card">
+  <img  src={`http://localhost:3001/profile-images/${obj._id}1.jpg`} class="card-img-top" alt="..."/>
   <div class="card-body">
     <h5 class="card-title">{obj.Name}</h5>
     <p class="card-text">{obj.age} Years, {obj.religion}</p>

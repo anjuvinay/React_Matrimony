@@ -22,11 +22,20 @@ export default function Signup() {
     Password:password   
   };
   
-  axios.post('http://localhost:3001/signup', dataToSend)
+  axios.post('http://localhost:3001/signup', dataToSend).then((response)=>{
+    if(response.data.result==true){
+      navigate('/login')
+      
+    }else{
+      alert("Duplicate Email")
+      
+    }
+  })
+  
     .catch(error => {
       console.error('Error:', error);
     });
-    navigate('/login')
+   
   }
 
   return (
