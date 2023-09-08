@@ -6,47 +6,38 @@ import axios from 'axios';
 function Login() {
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
+  const [error, setError] = useState('');
+
   const navigate=useNavigate()
 
   const handleLogin=async (e)=>{
     e.preventDefault()
 
-  //   const dataToSend = {
-  //     Email:email,
-  //     Password:password   
-  //   };
-    
-  //   axios.post('http://localhost:3001/login', dataToSend).then((response=>{
-  //     console.log(response.data.logged)
-  //     if(response.data.logged==true){
-  //       navigate('/')
-        
-  //     }else{
-  //       alert("Login Failed")
-        
-  //     }
-  //   }))
-  //   .catch((error)=>{
-  //     alert(error.message)
-  //   })
-  // }
   try {
+    if (!email || !password) {
+      setError('Please fill in both email and password.');
+      return;
+    }
+
     const response = await axios.post('http://localhost:3001/login', {
       Email: email,
       Password: password,
     });
 
     if (response.data.logged) {
-      console.log(response.data)
-     
       localStorage.setItem('token', response.data.token);
       navigate('/'); 
-    } else {
-      alert('Login Failed');
+    } 
+    else {
+      setError('Invalid email or password.');
     }
   } catch (error) {
-    alert('An error occurred while logging in.');
-    console.error(error);
+    if (error.response && error.response.data && error.response.data.message) {
+      setError(error.response.data.message);
+    }
+     else {
+      setError('An error occurred while logging in.');
+    }
   }
 };
 
@@ -82,6 +73,7 @@ function Login() {
           <br />
           <button>Login</button>
         </form>
+        {error && <p className="error">{error}</p>}
         <a onClick={()=>navigate('/Signup')}>Signup</a>
       </div>
     </div>

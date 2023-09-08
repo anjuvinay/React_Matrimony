@@ -1,15 +1,18 @@
 import React,{useState,useEffect} from 'react';
 import './Profiles.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Profiles() {
-    const[product,setProduct]=useState([])
-    useEffect(()=>{
+  const navigate=useNavigate()
+  const[product,setProduct]=useState([])
+
+  useEffect(()=>{
       const token = localStorage.getItem('token');
 
       if (!token) {
         console.log('Token missing');
-        return;
+       return;    
       }
 
       const headers = {
