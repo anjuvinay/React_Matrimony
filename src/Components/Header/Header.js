@@ -30,7 +30,7 @@ function Header() {
         <a class="nav-link" href="/matches">Matches </a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/create-profile">Create Profile</a>
+        <a class="nav-link" href="/createProfile">Create Profile</a>
       </li>
       
       {/* {{/if}} */}

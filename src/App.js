@@ -4,6 +4,7 @@ import { BrowserRouter as Router ,Route,Routes,useNavigate} from 'react-router-d
 import Home from './Pages/Home';
 import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
+import CreatePRofile from './Pages/CreatePRofile';
 
 
 
@@ -17,6 +18,7 @@ function App() {
         <Route element={<Home/>} path='/'/>
         <Route element={<SignUp/>} path='/signup'/>
         <Route element={<Login/>} path='/login'/>
+        <Route element={<CreatePRofile/>} path='/createProfile'/>
 
       </Routes> 
       

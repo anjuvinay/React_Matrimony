@@ -12,7 +12,7 @@ function Profiles() {
 
       if (!token) {
         console.log('Token missing');
-       return;    
+       return;
       }
 
       const headers = {
@@ -42,7 +42,7 @@ function Profiles() {
     <h5 class="card-title">{obj.Name}</h5>
     <p class="card-text">{obj.age} Years, {obj.religion}</p>
     <p class="card-text">{obj.job}, {obj.location}</p>
-    <a href="/view-profile/{{this._id}}" class="btn btn-primary">View Profile</a>
+    <a href="/view-profile/{{obj._id}}" class="btn btn-primary">View Profile</a>
     
   </div>
 </div>
