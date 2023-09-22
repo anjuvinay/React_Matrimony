@@ -1,9 +1,28 @@
 import React from 'react';
 import './Header.css';
 import { useNavigate } from 'react-router-dom';
+import jwt_decode from "jwt-decode";
 
 function Header() {
     const navigate=useNavigate()
+    
+    const token = localStorage.getItem('token');
+    
+    let token1 =  null;
+    if (token) {
+      token1 = jwt_decode(token); 
+  }
+
+    const handleLogout = async () => {
+      try {
+        localStorage.removeItem('token');
+        navigate('/login')
+        
+      } catch (error) {
+        console.error('Logout error:', error);
+      }
+    };
+
   return (
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -13,11 +32,16 @@ function Header() {
   <a class="navbar-brand" href="#">Matrimony</a>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+
+ 
+
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    {token && (
+      <>
+   
       <li class="nav-item active">
         <a class="nav-link" href="/">Profiles <span class="sr-only">(current)</span></a>
       </li>
-      {/* {{#if user}} */}
       <li class="nav-item active">
         <a class="nav-link" href="">Messages</a>
       </li>
@@ -32,31 +56,30 @@ function Header() {
       <li class="nav-item active">
         <a class="nav-link" href="/createProfile">Create Profile</a>
       </li>
-      
-      {/* {{/if}} */}
-    </ul>
+     </>
+     )}
+     </ul>
       <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle mr-5" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {/* {{#if user}}
-    {{user.Name}}
-    {{else}}
-    Account
-    {{/if}}  */}
+   
+     <span>{token ? `${token1.Name}` : "Account"}</span>
     
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    {/* {{#if user}} */}
-    
-     {/* <a class="dropdown-item" href="/my-profile">My Profile</a>
-     <a class="dropdown-item" href="/logout">Logout</a>
-    {{else}} */}
-     <a class="dropdown-item" href="/login">Login</a>
-    {/* {{/if}} */}
+
+  {token1 ? (
+   <>
+     <a class="dropdown-item" href="/myProfile">My Profile</a>
+     <a class="dropdown-item"  onClick={handleLogout}>Logout</a>
+     </>
+    ) : (
+   
+    <a class="dropdown-item" href="/login">Login</a>
+  
+    )}
    
   </div>
-</div>
-     
-    
+</div>  
   </div>
 </nav>
    </header>

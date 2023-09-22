@@ -46,6 +46,18 @@ export default function CreateProfile() {
 
     const handleSubmit=(e)=>{
     e.preventDefault()
+
+     const token = localStorage.getItem('token');
+
+      if (!token) {
+        console.log('Token missing');
+        navigate('/login')
+      }
+
+      const header = {
+        Authorization: `Bearer ${token}`,
+      };
+
     try{
         const formData = new FormData();
         formData.append('image1', image1);
@@ -85,7 +97,7 @@ export default function CreateProfile() {
         formData.append('ffphysical', p_physical);
         
   
-          const response = axios.post('http://localhost:3001/create-profile', formData, {
+          const response = axios.post('http://localhost:3001/create-profile', formData, {header},{
            
             headers: {
               'Content-Type': 'multipart/form-data',

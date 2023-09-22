@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import './Profiles.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { getToken, isAuthenticated } from '../../Token/Token';
 
 function Profiles() {
   const navigate=useNavigate()
@@ -12,21 +13,25 @@ function Profiles() {
 
       if (!token) {
         console.log('Token missing');
-       return;
+        navigate('/login')
+      //  return;
       }
 
       const headers = {
         Authorization: `Bearer ${token}`,
       };
+     
+  
         axios.get('http://localhost:3001/pro', {headers}).then((response)=>{
           setProduct(response.data.items)
          
         })
         .catch((error) => {
           console.error('An error occurred while fetching data:', error);
+          navigate('/login')
         });
    
-       })
+       },[])
 
   return (
     <section>

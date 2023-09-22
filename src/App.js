@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
 import CreatePRofile from './Pages/CreatePRofile';
+import My_pRofile from './Pages/My_pRofile';
 
 
 
@@ -19,6 +20,7 @@ function App() {
         <Route element={<SignUp/>} path='/signup'/>
         <Route element={<Login/>} path='/login'/>
         <Route element={<CreatePRofile/>} path='/createProfile'/>
+        <Route element={<My_pRofile/>} path='/myProfile'/>
 
       </Routes> 
       
