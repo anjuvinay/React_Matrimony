@@ -1,0 +1,26 @@
+.geeks {
+    width: 21 rem;
+    height: 19 rem;
+    overflow:visible;
+    margin:auto;
+}
+
+.geeks img {
+    width: 100%;
+    transition: 0.5s all ease-in-out;
+}
+
+.geeks:hover img {
+    transform: scale(1.5);
+}
+
+.card-img-top2 {
+    width: 10rem;
+    height: 8rem;
+}
+
+.card-img-top1 {
+    width: 21rem;
+    height: 19rem;
+    
+}

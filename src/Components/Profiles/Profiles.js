@@ -1,12 +1,13 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
 import './Profiles.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { getToken, isAuthenticated } from '../../Token/Token';
+import { PostContext } from '../../store/PostContext';
 
 function Profiles() {
   const navigate=useNavigate()
   const[product,setProduct]=useState([])
+  const {setPostDetails}=useContext(PostContext)
 
   useEffect(()=>{
       const token = localStorage.getItem('token');
@@ -14,7 +15,7 @@ function Profiles() {
       if (!token) {
         console.log('Token missing');
         navigate('/login')
-      //  return;
+      
       }
 
       const headers = {
@@ -47,7 +48,12 @@ function Profiles() {
     <h5 class="card-title">{obj.Name}</h5>
     <p class="card-text">{obj.age} Years, {obj.religion}</p>
     <p class="card-text">{obj.job}, {obj.location}</p>
-    <a href="/view-profile/{{obj._id}}" class="btn btn-primary">View Profile</a>
+    <a  
+    onClick={()=>{
+              setPostDetails(obj)
+              navigate('/detailedView')
+            }}
+             class="btn btn-primary">View Profile</a>
     
   </div>
 </div>
