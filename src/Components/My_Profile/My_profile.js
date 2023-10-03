@@ -10,7 +10,9 @@ function My_profile() {
   const navigate=useNavigate()
   const[profile,setProfile]=useState([])
 
+
   useEffect(()=>{
+    console.log('useEffect is running');
       const token = localStorage.getItem('token');
 
       if (!token) {
@@ -106,7 +108,7 @@ function My_profile() {
                         <hr/>
                         <h6>Mobile: {profile.mobile} </h6>
                         <hr/>   
-                          <a href="/edit-profile/{{profile._id}}" class="btn btn-primary mr-4">Edit</a>
+                          <a href="/edit" class="btn btn-primary mr-4">Edit</a>
                           <a href="/delete-profile/{{profile._id}}" class="btn btn-primary" onclick="return confirm('Do you want to delete your profile {{profile.Name}}')">Delete</a>        
                          <br/><br/><br/>
                         </div>

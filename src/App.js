@@ -8,6 +8,7 @@ import CreatePRofile from './Pages/CreatePRofile';
 import My_pRofile from './Pages/My_pRofile';
 import Post from './store/PostContext';
 import DetailedView from './Pages/DetailedView';
+import Edit_MyProfile from './Pages/Edit_MyProfile';
 
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route element={<CreatePRofile/>} path='/createProfile'/>
         <Route element={<My_pRofile/>} path='/myProfile'/>
         <Route element={<DetailedView/>} path='/detailedView'/>
+        <Route element={<Edit_MyProfile/>} path='/edit'/>
 
       </Routes> 
       </Post>
