@@ -3,9 +3,15 @@ import './Edit.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 function Edit() {
   const navigate=useNavigate()
   const[profile,setProfile]=useState([])
+  const [image1URL, setImage1URL] = useState('');
+  const [image2URL, setImage2URL] = useState('');
+  const [image3URL, setImage3URL] = useState('');
+  const [placeholderImageUrl, setPlaceholderImageUrl] = useState('');
+
   const [formData, setFormData] = useState({
    
     name: '',
@@ -45,9 +51,7 @@ function Edit() {
     image1: null,
     image2: null,
     image3: null,
-    isImage1Updated: false,
-    isImage2Updated: false,
-    isImage3Updated: false
+   
   });
 
 
@@ -67,6 +71,19 @@ function Edit() {
       axios.get('http://localhost:3001/edit-profile', {headers}).then((response)=>{
         setProfile(response.data.items)
         const savedData = response.data.items;
+
+      const image1URL = `http://localhost:3001/profile-images/${response.data.items._id}1.jpg?${Date.now()}`;
+      setImage1URL(image1URL);
+
+      
+      const image2URL = `http://localhost:3001/profile-images/${response.data.items._id}2.jpg?${Date.now()}`;
+      setImage2URL(image2URL);
+
+     
+      const image3URL = `http://localhost:3001/profile-images/${response.data.items._id}3.jpg?${Date.now()}`;
+      setImage3URL(image3URL);
+
+    
         setFormData({
           name: savedData.Name || '',
           age: savedData.age || '',
@@ -119,30 +136,52 @@ function Edit() {
       const { name, value } = e.target;
       setFormData({ ...formData, [name]: value });
     };
-  
+   
+
     const handleFileChange = (e) => {
       const { name, files } = e.target;
-      setFormData({ ...formData, [name]: files[0] });
+      const imagenumber = name.replace("image", "");
+    
+      if (files[0]) {
+        const reader = new FileReader();
+    
+        reader.onload = (event) => {
+          const imageUrl = event.target.result;
+    
+          if (imagenumber === "1") {
+            setImage1URL(imageUrl);
+          } else if (imagenumber === "2") {
+            setImage2URL(imageUrl);
+          } else if (imagenumber === "3") {
+            setImage3URL(imageUrl);
+          }
+    
+          setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: files[0],
+          }));
+        };
+    
+        reader.readAsDataURL(files[0]);
+      } else {
+       
+        if (imagenumber === "1") {
+          setImage1URL(placeholderImageUrl);
+        } else if (imagenumber === "2") {
+          setImage2URL('');
+        } else if (imagenumber === "3") {
+          setImage3URL('');
+        }
+    
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          [name]: null,
+        }));
+      }
     };
-
-    // const handleFileChange = (e) => {
-    //   const { name, files } = e.target;
-    //   // Assuming that the input name matches the image number (e.g., "image1", "image2", "image3")
-    //   const image1 = name.replace("image", "");
     
-    //   // Create a URL for the selected file
-    //   const imageUrl = URL.createObjectURL(files[0]);
-    
-    //   setFormData((prevFormData) => ({
-    //     ...prevFormData,
-    //     [name]: files[0],
-    //     // Update the corresponding <img> src
-    //     [`image${image1}`]: imageUrl,
-    //   }));
-    // };
     
 
-  
     const handleSubmit = (e) => {
       e.preventDefault();
   
@@ -216,31 +255,21 @@ function Edit() {
                 <h2 class="text-center">Edit Profile</h2>
                     <form onSubmit={handleSubmit}>
 
-                    {/* <label>Image 1</label>&emsp;
-                    <img width="150px" height="150px" src={formData.image1} alt="..." />
-                    <input type="file" class="form-control" name="image1"
-                     onChange={handleFileChange} />
-                      */}
-
-
-                    <div>
-                    <label>Image 1</label>&emsp;
-                    <img width="150px" height="150px" src={`http://localhost:3001/profile-images/${profile._id}1.jpg?${Date.now()}`} alt="..."/>
-                    <input type="file" class="form-control" name="image1"
-                    onChange={handleFileChange} />
-                    </div>
-                    <br/>
+                   <label>Image 1</label>&emsp;
+                   <img width="150px" height="150px" src={image1URL} alt="..." />
+                   <input type="file" id="image1" class="form-control" name="image1" onChange={handleFileChange} />
+                   <br/>
+                   
 
                     <label htmlFor="">Image 2 </label>&emsp;
-                    <img width="150px" height="150px" src={`http://localhost:3001/profile-images/${profile._id}2.jpg?${Date.now()}`} alt="..."/>
-                    <input type="file" class="form-control" name="image2" 
-                    onChange={handleFileChange} />
+                    <img width="150px" height="150px" src={image2URL} alt="..." />
+                    <input type="file" id="image2" class="form-control" name="image2" onChange={handleFileChange} />
                     <br/> 
 
                     <label htmlFor="">Image 3 </label>&emsp;
-                    <img width="150px" height="150px" src={`http://localhost:3001/profile-images/${profile._id}3.jpg?${Date.now()}`} alt="..."/>
-                    <input type="file" class="form-control" name="image3" 
-                    onChange={handleFileChange} />
+                    <img width="150px" height="150px" src={image3URL} alt="..." />
+                    <input type="file" id="image3" class="form-control" name="image3" onChange={handleFileChange} />
+                    <br/>
                   
                     
                     <label>Name</label>
