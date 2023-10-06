@@ -28,6 +28,7 @@ export default function CreateProfile() {
     const [job,setJob]=useState('')
     const [mobile,setMobile]=useState('')
     const [email,setEmail]=useState('')
+    const [emailError, setEmailError] = useState('');
 
     const [p_age_min,setP_age_min]=useState('')
     const [p_age_max,setP_age_max]=useState('')
@@ -46,6 +47,13 @@ export default function CreateProfile() {
 
     const handleSubmit=(e)=>{
     e.preventDefault()
+
+    if (!email) {
+        setEmailError('Email is mandatory');
+        return;
+      }
+  
+      setEmailError('');
 
      const token = localStorage.getItem('token');
 
@@ -97,13 +105,12 @@ export default function CreateProfile() {
         formData.append('ffphysical', p_physical);
         
   
-          const response = axios.post('http://localhost:3001/create-profile', formData, {header},{
+          const response = axios.post('http://localhost:3001/create-profile', formData, {
            
-            headers: {
+          headers: header, 
               'Content-Type': 'multipart/form-data',
-            },
+            
           });
-          console.log(formData)
           navigate('/');
         } catch (error) {
           console.error('Error posting data:', error);
@@ -376,6 +383,7 @@ export default function CreateProfile() {
                     value={email}
                     onChange={(e)=>setEmail(e.target.value)}
                     class="form-control"/>
+                    {emailError && <div className="text-danger">{emailError}</div>}
                     <br/><br/>
 
                     <h2 class="text-center">Partner Preference</h2>
@@ -601,7 +609,7 @@ export default function CreateProfile() {
                         <option value="Normal">Normal</option>
                         <option value="Disabled">Disabled</option>  
                     </select>
-
+                    
                     <button class="btn btn-success mt-4">Submit</button>
                     <br/><br/><br/><br/>
 

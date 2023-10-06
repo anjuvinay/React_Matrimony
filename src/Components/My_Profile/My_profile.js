@@ -12,7 +12,6 @@ function My_profile() {
 
 
   useEffect(()=>{
-    console.log('useEffect is running');
       const token = localStorage.getItem('token');
 
       if (!token) {
@@ -26,7 +25,12 @@ function My_profile() {
      
   
         axios.get('http://localhost:3001/my-profile', {headers}).then((response)=>{
+
+          if (response.data.items === null) {
+            navigate('/createProfile');
+          } else {
           setProfile(response.data.items)
+          }
          
         })
         .catch((error) => {
@@ -35,6 +39,35 @@ function My_profile() {
         });
    
        },[])
+
+       const handleDelete = async () => {
+
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+          console.log('Token missing');
+          navigate('/login')
+        }
+  
+        const headers = {
+          Authorization: `Bearer ${token}`,
+        };
+
+        axios.get('http://localhost:3001/delete-profile', {headers}).then((response)=>{
+          if(response.data.deleted==true){
+            alert("Are you sure")
+            navigate('/createProfile')
+            
+          }else{
+            alert("Unable to delete")
+            
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+       
+      }
 
   return (
         
@@ -107,9 +140,11 @@ function My_profile() {
                         <h6>Email: {profile.email} </h6>
                         <hr/>
                         <h6>Mobile: {profile.mobile} </h6>
-                        <hr/>   
-                          <a href="/edit" class="btn btn-primary mr-4">Edit</a>
-                          <a href="/delete-profile/{{profile._id}}" class="btn btn-primary" onclick="return confirm('Do you want to delete your profile {{profile.Name}}')">Delete</a>        
+                        <hr/> 
+
+                          <a href="/edit" className="btn btn-primary mr-4">Edit</a>
+                          <button onClick={handleDelete} className="btn btn-primary" >Delete</button>
+                          
                          <br/><br/><br/>
                         </div>
 

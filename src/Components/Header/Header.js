@@ -5,13 +5,19 @@ import jwt_decode from "jwt-decode";
 
 function Header() {
     const navigate=useNavigate()
-    
     const token = localStorage.getItem('token');
-    
     let token1 =  null;
+
     if (token) {
       token1 = jwt_decode(token); 
+  
+  const isTokenExpired = token1.exp && token1.exp * 1000 < Date.now();
+
+  if (isTokenExpired) {   
+    localStorage.removeItem('token');
+    token1 = null; 
   }
+}
 
     const handleLogout = async () => {
       try {

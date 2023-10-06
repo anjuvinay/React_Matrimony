@@ -48,12 +48,12 @@ function Profiles() {
     <h5 class="card-title">{obj.Name}</h5>
     <p class="card-text">{obj.age} Years, {obj.religion}</p>
     <p class="card-text">{obj.job}, {obj.location}</p>
-    <a  
+    <button 
     onClick={()=>{
               setPostDetails(obj)
               navigate('/detailedView')
             }}
-             class="btn btn-primary">View Profile</a>
+              class="btn btn-primary">View Profile</button>
     
   </div>
 </div>
