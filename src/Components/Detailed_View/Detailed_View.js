@@ -105,7 +105,8 @@ function Detailed_View() {
                         <hr/>
                         <h6>Mobile: {profile.mobile} </h6>
                         <hr/>   
-                          <a href="/send-intrest/{{profile._id}}" class="btn btn-primary mr-4">Send Interest</a>
+                          <button onClick={()=>{ navigate(`/interestMsg/${postDetails._id}`) }}
+                          class="btn btn-primary mr-4">Send Interest</button>
                           <a href="/send-message/{{profile._id}}" class="btn btn-primary">Send Message</a>        
                          <br/><br/><br/><br/><br/>
                         </div>

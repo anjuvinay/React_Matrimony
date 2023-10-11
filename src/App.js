@@ -9,6 +9,7 @@ import My_pRofile from './Pages/My_pRofile';
 import Post from './store/PostContext';
 import DetailedView from './Pages/DetailedView';
 import Edit_MyProfile from './Pages/Edit_MyProfile';
+import InterestMsg from './Pages/InterestMsg';
 
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route element={<My_pRofile/>} path='/myProfile'/>
         <Route element={<DetailedView/>} path='/detailedView'/>
         <Route element={<Edit_MyProfile/>} path='/edit'/>
+        <Route element={<InterestMsg/>} path='/interestMsg/:id'/>
 
       </Routes> 
       </Post>
