@@ -9,8 +9,6 @@ function Home(props) {
       <Header />
       <Profiles/>
      
-      
-     
     </div>
   );
 }

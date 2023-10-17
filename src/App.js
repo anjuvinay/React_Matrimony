@@ -10,6 +10,9 @@ import Post from './store/PostContext';
 import DetailedView from './Pages/DetailedView';
 import Edit_MyProfile from './Pages/Edit_MyProfile';
 import InterestMsg from './Pages/InterestMsg';
+import ReceivedINTerest from './Pages/ReceivedINTerest';
+import SendINTerest from './Pages/SendINTerest';
+import ProfileACCepted from './Pages/ProfileACCepted';
 
 
 
@@ -28,6 +31,9 @@ function App() {
         <Route element={<DetailedView/>} path='/detailedView'/>
         <Route element={<Edit_MyProfile/>} path='/edit'/>
         <Route element={<InterestMsg/>} path='/interestMsg/:id'/>
+        <Route element={<ReceivedINTerest/>} path='/receivedInterest'/>
+        <Route element={<SendINTerest/>} path='/sendInterest'/>
+        <Route element={<ProfileACCepted/>} path='/profileAccepted'/>
 
       </Routes> 
       </Post>

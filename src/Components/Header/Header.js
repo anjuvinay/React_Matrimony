@@ -52,7 +52,7 @@ function Header() {
         <a class="nav-link" href="">Messages</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/interest">Interests
+        <a class="nav-link" href="/receivedInterest">Interests
          {/* <span class="badge badge-success" id="interest-count">{{interestCount}}</span> */}
          </a>
       </li>
