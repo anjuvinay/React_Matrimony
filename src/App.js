@@ -15,6 +15,9 @@ import SendINTerest from './Pages/SendINTerest';
 import ProfileACCepted from './Pages/ProfileACCepted';
 import ProfileDEClined from './Pages/ProfileDEClined';
 import Matching_Profile from './Pages/Matching_Profile';
+import Admin_SignUP from './Pages/Admin_SignUP';
+import Admin_LogIN from './Pages/Admin_LogIN';
+import Admin_HOme from './Pages/Admin_HOme';
 
 
 
@@ -38,6 +41,9 @@ function App() {
         <Route element={<ProfileACCepted/>} path='/profileAccepted'/>
         <Route element={<ProfileDEClined/>} path='/profileDeclined'/>
         <Route element={<Matching_Profile/>} path='/matches'/>
+        <Route element={<Admin_SignUP/>} path='/adminSignUp'/>
+        <Route element={<Admin_LogIN/>} path='/adminLogin'/>
+        <Route element={<Admin_HOme/>} path='/adminHome'/>
 
       </Routes> 
       </Post>

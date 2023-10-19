@@ -38,13 +38,18 @@ function Interest_msg() {
         formData.append('message', message);
         console.log(formData)
        
-        // console.log(id)
           // axios.post(`http://localhost:3001/int-msg/${id}`, formData, {
            await axios.post(`http://localhost:3001/int-msg/${postDetails._id}`, formData, {
             headers: header,
           }).then((response) => {
-                navigate('/')
-                // redirect to send interest page
+            if(response.data.sendInterest===true){
+              navigate('/')
+               
+             }else{
+              alert("To send Interest, you have to create a profile first")
+              navigate('/createProfile');
+              console.log("error in Interest sending") 
+             }
             
               })} catch (error) {
                 console.error('Error posting data:', error);
@@ -60,7 +65,7 @@ function Interest_msg() {
                 <form onSubmit={handleMessage}>
                       
                 <label htmlFor="comment">Message:</label>
-                {/* <input type='text' name="Id" class="form-control" value={{proId}}></input> */}
+                
                 <textarea className="form-control" rows="5" name="comment" id="comment"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}

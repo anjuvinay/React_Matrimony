@@ -13,6 +13,7 @@ export default function CreateProfile() {
     const [name,setName]=useState('')
     const [age,setAge]=useState('')
     const [gender,setGender]=useState('')
+    const [genderError,setGenderError] = useState('');
     const [dob,setDob]=useState('')
     const [height,setHeight]=useState('')
     const [weight,setWeight]=useState('')
@@ -48,7 +49,14 @@ export default function CreateProfile() {
     const handleSubmit=(e)=>{
     e.preventDefault()
 
-    if (!email) {
+    if (!gender) {
+        setGenderError('Gender is mandatory');
+        return;
+      }
+  
+      setGenderError('');
+
+      if (!email) {
         setEmailError('Email is mandatory');
         return;
       }
@@ -173,6 +181,7 @@ export default function CreateProfile() {
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
+                    {genderError && <div className="text-danger">{genderError}</div>}
 
                      <label htmlFor="">Date Of Birth</label>
                     <input type="date" 
