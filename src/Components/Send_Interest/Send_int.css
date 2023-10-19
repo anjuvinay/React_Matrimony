@@ -1,17 +1,16 @@
-
-.card1 {
-    max-width: 960px;
-    max-height: 260px;
-    margin-bottom: 3px;
-    
+.card5 {
+  max-width: 930px;
+  max-height: 270px;
+  margin-bottom: 3px; 
 }
 
-.img-thumbnail{
-    width: 14rem; 
+.img-thumbnail5{
+    width: 15rem; 
     height: 15rem;
+    border: 1px solid #e2dcdc;
 }
 
-.card1 {
+.card5{
     border: 1px solid #cfc8c8;
     border-radius: 10px;
     margin: 10px;
@@ -21,20 +20,29 @@
   }
   
   
-  .card1 .card-body {
+  .card5 .card-body {
     padding: 10px;
   }
   
-  .card1 .card-title {
+  .card5 .card-title {
     font-size: 1.5rem;
     margin: 0;
   }
   
-  .card1 .card-text {
+  .card5 .card-text {
     font-size: 1rem;
     color: #555;
   }
   
-  .card1 .btn {
+  .card5 .btn {
     margin-top: 10px;
   }
+
+
+  
+  
+  
+  
+  
+  
+  

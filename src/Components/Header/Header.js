@@ -1,10 +1,14 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import './Header.css';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import jwt_decode from "jwt-decode";
 
 function Header() {
     const navigate=useNavigate()
+    const[count,setCount]=useState('')
+
+    
     const token = localStorage.getItem('token');
     let token1 =  null;
 
@@ -18,6 +22,30 @@ function Header() {
     token1 = null; 
   }
 }
+
+useEffect(()=>{
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    console.log('Token missing');
+    navigate('/login')
+  }
+
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+ 
+
+    axios.get('http://localhost:3001/count', {headers}).then((response)=>{
+      setCount(response.data.items)
+    })
+    .catch((error) => {
+      console.error('An error occurred while fetching data:', error);
+      navigate('/login')
+    });
+
+   },[])
+
 
     const handleLogout = async () => {
       try {
@@ -53,7 +81,7 @@ function Header() {
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="/receivedInterest">Interests
-         {/* <span class="badge badge-success" id="interest-count">{{interestCount}}</span> */}
+         <span class="badge badge-success" id="interest-count">{count}</span>
          </a>
       </li>
       <li class="nav-item active">

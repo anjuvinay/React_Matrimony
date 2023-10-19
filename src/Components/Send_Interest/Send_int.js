@@ -99,10 +99,10 @@ function Send_int() {
         profile.map((obj)=>{
           return(
  <div class="container mt-3 ml-5">
-<div class="card" className='card1'>
+<div class="card" className='card5'>
   <div class="row g-0">
     <div class="col-md-4">
-      <img src={`http://localhost:3001/profile-images/${obj._id}1.jpg`} class="img-thumbnail" alt="..."/>
+      <img src={`http://localhost:3001/profile-images/${obj._id}1.jpg`} class="img-thumbnail5" alt="..."/>
     </div>
     <div class="col-md-8 pl-0">
       <div class="card-body">

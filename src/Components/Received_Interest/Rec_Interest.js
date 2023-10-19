@@ -113,7 +113,7 @@ function Rec_Interest() {
      &nbsp;&nbsp;&nbsp;
     <a href="/profileAccepted" class="btn btn-secondary">Profiles Accepted</a>
      &nbsp;&nbsp;&nbsp; 
-    <a href="/declined-interest" class="btn btn-secondary">Profiles Declined</a>
+    <a href="/profileDeclined" class="btn btn-secondary">Profiles Declined</a>
     
   </form>
 </nav >
@@ -128,7 +128,7 @@ function Rec_Interest() {
 <div class="card" className='card2'>
   <div class="row g-0">
     <div class="col-md-4">
-      <img src={`http://localhost:3001/profile-images/${obj._id}1.jpg`} className="img-thumbnail1" alt="..."/>
+      <img src={`http://localhost:3001/profile-images/${obj._id}1.jpg`} className="img-thumbnail2" alt="..."/>
     </div>
     <div class="col-md-8 pl-0">
       <div class="card-body">

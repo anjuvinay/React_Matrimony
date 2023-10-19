@@ -13,6 +13,8 @@ import InterestMsg from './Pages/InterestMsg';
 import ReceivedINTerest from './Pages/ReceivedINTerest';
 import SendINTerest from './Pages/SendINTerest';
 import ProfileACCepted from './Pages/ProfileACCepted';
+import ProfileDEClined from './Pages/ProfileDEClined';
+import Matching_Profile from './Pages/Matching_Profile';
 
 
 
@@ -34,6 +36,8 @@ function App() {
         <Route element={<ReceivedINTerest/>} path='/receivedInterest'/>
         <Route element={<SendINTerest/>} path='/sendInterest'/>
         <Route element={<ProfileACCepted/>} path='/profileAccepted'/>
+        <Route element={<ProfileDEClined/>} path='/profileDeclined'/>
+        <Route element={<Matching_Profile/>} path='/matches'/>
 
       </Routes> 
       </Post>

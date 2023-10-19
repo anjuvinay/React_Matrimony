@@ -1,0 +1,20 @@
+.img-thumbnail3{
+    width: 14rem; 
+    height: 13rem;
+}
+
+.card3 {
+    border: 1px solid #cfc8c8;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9fcfc;
+  }
+
+  .card3 {
+    max-width: 960px;
+    max-height: 230px;
+    margin-bottom: 3px;
+    
+}

@@ -1,11 +1,10 @@
-
 import React,{useState,useEffect,useContext} from 'react';
-import './Prof_Accepted.css';
+import './Prof_Declined.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { PostContext } from '../../store/PostContext';
 
-function Prof_Accepted() {
+function Prof_Declined() {
     const navigate=useNavigate()
     const[profile,setProfile]=useState([])
     const {setPostDetails}=useContext(PostContext)
@@ -24,15 +23,13 @@ function Prof_Accepted() {
         };
        
     
-          axios.get('http://localhost:3001/accepted-interest', {headers}).then((response)=>{
+          axios.get('http://localhost:3001/declined-interest', {headers}).then((response)=>{
             if (response.data.items) {
                 setProfile(response.data.items)
               } 
               else {
                 navigate('/createProfile')
-              }
-            
-           
+              } 
           })
           .catch((error) => {
             console.error('An error occurred while fetching data:', error);
@@ -43,11 +40,11 @@ function Prof_Accepted() {
 
   return (
     <div>
-      <nav class="navbar navbar-light bg-light mb-4">
+            <nav class="navbar navbar-light bg-light mb-4">
   <form class="form-inline">
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
      
-    <h3 class="text-center">Accepted Profiles</h3>
+    <h3 class="text-center">Declined Profiles</h3>
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -61,7 +58,7 @@ function Prof_Accepted() {
      &nbsp;&nbsp;&nbsp;&nbsp;
     <a href="/receivedInterest" class="btn btn-secondary">Interest Received</a>
      &nbsp;&nbsp;&nbsp;&nbsp;  
-    <a href="/profileDeclined" class="btn btn-secondary">Profiles Declined</a>
+    <a href="/profileAccepted" class="btn btn-secondary">Profiles Accepted</a>
     
   </form>
 </nav>
@@ -69,13 +66,13 @@ function Prof_Accepted() {
 
 <section>
 {
-        profile.map((obj)=>{
-          return(
+ profile.map((obj)=>{
+ return(
     <div class="container mt-3 ml-5">
-<div class="card1" >
+<div class="card3" >
   <div class="row g-0">
     <div class="col-md-4">
-      <img src={`http://localhost:3001/profile-images/${obj._id}1.jpg`} class="img-thumbnail" alt="..."/>
+      <img src={`http://localhost:3001/profile-images/${obj._id}1.jpg`} class="img-thumbnail3" alt="..."/>
     </div>
     <div class="col-md-8 pl-0">
       <div class="card-body">
@@ -87,7 +84,7 @@ function Prof_Accepted() {
           setPostDetails(obj)
           navigate('/detailedView')
         }} class="btn btn-secondary mr-4">View Profile</button>
-        <button class="btn btn-secondary mr-4">Accepted</button>  
+        <button class="btn btn-secondary mr-4">Declined</button>  
       </div>
     </div>
   </div>
@@ -97,9 +94,8 @@ function Prof_Accepted() {
 })
 }
 </section>
-
     </div>
   )
 }
 
-export default Prof_Accepted
+export default Prof_Declined

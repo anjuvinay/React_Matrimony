@@ -1,0 +1,21 @@
+.img-thumbnail8{
+    width: 11rem; 
+    height: 9.3rem;
+    border: 1px solid #e2dcdc;
+}
+
+.card8 {
+    border: 1px solid #cfc8c8;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9fcfc;
+  }
+
+  .card8 {
+    max-width: 700px;
+    max-height: 170px;
+    margin-bottom: 3px;
+    
+}
